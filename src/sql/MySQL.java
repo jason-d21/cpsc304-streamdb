@@ -2,32 +2,29 @@
 
 package sql;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class MySQL {
-    private final String URL = "jdbc:mysql://localhost:3306/";
-    private final String SCHEMA_DEFAULT = "cpsc304project";
+    private final String URL = "jdbc:mysql://localhost:3306/";  // check MySQL connection for localhost port
+    private final String SCHEMA_DEFAULT = "cpsc304project"; // create this schema in the connection if using default
 
-    private Connection connect = null;
-    private Statement statement = null;
-    private PreparedStatement preparedStatement = null;
-    private ResultSet resultSet = null;
+    private Connection connect;
+    private Statement statement;
+    private ResultSet resultSet;
 
+    // Constructor using default schema
     public MySQL(String username, String password) throws SQLException {
         try {
             connect = DriverManager.getConnection(URL+SCHEMA_DEFAULT, username, password);
             statement = connect.createStatement();
+            resultSet = null;
             System.out.println("Connection established...");
         }
         catch (SQLException e) {
@@ -35,6 +32,8 @@ public class MySQL {
             throw e;
         }
     }
+
+    // Constructor with schema parameter
     public MySQL(String username, String password, String schema) throws SQLException {
         try {
             connect = DriverManager.getConnection(URL+schema, username, password);
@@ -47,7 +46,16 @@ public class MySQL {
         }
     }
 
+    // Take the name of an SQL script in the parent folder and run all statements in the script
     public void runScript(String scriptName) throws FileNotFoundException, SQLException {
+        List<String> statements = readScript(scriptName);
+        for (String s : statements) {
+            runStatement(s);
+        }
+    }
+
+    // Read SQL script and returns a list of statements in the script
+    private List<String> readScript(String scriptName) throws FileNotFoundException {
         File f = new File("./" + scriptName);
         Scanner reader = new Scanner(f);
         reader.useDelimiter(";");
@@ -55,54 +63,50 @@ public class MySQL {
         List<String> statements = new ArrayList<>();
         while (reader.hasNext()) {
             String stm = reader.next();
-            statements.add(stm.trim());
+            stm = stm.trim();
+            if (!stm.isEmpty()) statements.add(stm);
         }
 
-        for (String s : statements) {
-            runStatement(s);
-        }
+        return statements;
     }
 
-    private void runStatement(String stm) throws SQLException {
+    // For executing statements that do not return anything: DDL, INSERT, UPDATE, DELETE
+    // Executed statement will be printed out to console
+    public void runStatement(String stm) throws SQLException {
         statement.executeUpdate(stm);
         System.out.println("Statement executed:");
         System.out.println(stm);
         System.out.println();
     }
 
-    private void writeMetaData() throws SQLException {
-        //  Now get some metadata from the database
-        // Result set get the result of the SQL query
+    // Takes in a query as a string, run it, and return the results
+    // The result is a pair where:
+    // - pair.left is the list of all attributes/column names in the result
+    // - pair.right is the list of tuples in the result
+    //      + each tuple is a list of values whose index corresponds to the index of list of attributes
+    public Pair<List<String>, List<List<String>>> runQuery(String query) throws SQLException {
+        resultSet = statement.executeQuery(query);
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
 
-        System.out.println("The columns in the table are: ");
-
-        System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
-        for  (int i = 1; i<= resultSet.getMetaData().getColumnCount(); i++){
-            System.out.println("Column " +i  + " "+ resultSet.getMetaData().getColumnName(i));
+        List<String> attributes = new ArrayList<>();
+        for (int i = 1; i <= columnsNumber; i++) {
+            attributes.add(rsmd.getColumnLabel(i));
         }
-    }
 
-    private void writeResultSet() throws SQLException {
-        // ResultSet is initially before the first data set
+        List<List<String>> tuples = new ArrayList<>();
         while (resultSet.next()) {
-            // It is possible to get the columns via name
-            // also possible to get the columns via the column number
-            // which starts at 1
-            // e.g. resultSet.getString(2);
-            String user = resultSet.getString("myuser");
-            String website = resultSet.getString("webpage");
-            String summary = resultSet.getString("summary");
-            Date date = resultSet.getDate("datum");
-            String comment = resultSet.getString("comments");
-            System.out.println("User: " + user);
-            System.out.println("Website: " + website);
-            System.out.println("summary: " + summary);
-            System.out.println("Date: " + date);
-            System.out.println("Comment: " + comment);
+            List<String> tuple = new ArrayList<>();
+            for (int i = 1; i <= columnsNumber; i++) {
+                tuple.add(resultSet.getString(i));
+            }
+            tuples.add(tuple);
         }
+
+        return new Pair<>(attributes, tuples);
     }
 
-    // You need to close the resultSet
+    // Close connection. Need to be called at the end a session whenever an instance is invoked
     public void close() {
         try {
             if (resultSet != null) {
@@ -116,8 +120,9 @@ public class MySQL {
             if (connect != null) {
                 connect.close();
             }
-        } catch (Exception e) {
-
+        }
+        catch (Exception e) {
+            System.out.println(e.getStackTrace());
         }
     }
 }
