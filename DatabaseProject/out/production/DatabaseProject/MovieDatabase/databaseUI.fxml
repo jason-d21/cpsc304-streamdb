@@ -40,21 +40,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-            <TextArea layoutX="17.0" layoutY="136.0" prefHeight="197.0" prefWidth="290.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="135.0" />
-            <TextArea layoutX="233.0" layoutY="302.0" prefHeight="123.0" prefWidth="316.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
-            <Label layoutX="225.0" layoutY="14.0" text="Movie Database" AnchorPane.topAnchor="14.0">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
-            <Button layoutX="17.0" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" text="Run" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-            <ComboBox fx:id="templates" layoutX="17.0" layoutY="60.0" onMouseClicked="#getTemplates" prefHeight="26.0" prefWidth="290.0" promptText="Select from template" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
-            <ComboBox layoutX="17.0" layoutY="95.0" prefHeight="26.0" prefWidth="290.0" promptText="Select default queries" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="95.0" />
-      </children>
-    </AnchorPane>
-  </children>
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MovieDatabase.Controller">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TextArea fx:id="terminal" layoutX="17.0" layoutY="136.0" prefHeight="197.0" prefWidth="290.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="135.0" />
+                <TextArea layoutX="233.0" layoutY="302.0" prefHeight="123.0" prefWidth="316.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
+                <Label layoutX="225.0" layoutY="14.0" text="Movie Database" AnchorPane.topAnchor="15.0">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Label>
+                <Button layoutX="17.0" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" text="Run" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                <ComboBox fx:id="templates" layoutX="17.0" layoutY="60.0" onAction="#Select" prefHeight="26.0" prefWidth="290.0" promptText="Select from template" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
+                <ComboBox layoutX="17.0" layoutY="95.0" prefHeight="26.0" prefWidth="290.0" promptText="Select default queries" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="95.0" />
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>
