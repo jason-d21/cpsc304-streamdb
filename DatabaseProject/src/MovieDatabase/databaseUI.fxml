@@ -44,16 +44,16 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <TextArea fx:id="terminal" layoutX="17.0" layoutY="136.0" prefHeight="197.0" prefWidth="290.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="135.0" />
-                <TextArea layoutX="233.0" layoutY="302.0" prefHeight="123.0" prefWidth="316.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
+                <TextArea fx:id="terminal" layoutX="17.0" layoutY="139.0" prefHeight="196.0" prefWidth="290.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="140.0" />
+                <TextArea fx:id="output" editable="false" layoutX="233.0" layoutY="302.0" prefHeight="123.0" prefWidth="316.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0" />
                 <Label layoutX="225.0" layoutY="14.0" text="Movie Database" AnchorPane.topAnchor="15.0">
                     <font>
                         <Font size="28.0" />
                     </font>
                 </Label>
-                <Button layoutX="17.0" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" text="Run" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-                <ComboBox fx:id="templates" layoutX="17.0" layoutY="60.0" onAction="#Select" prefHeight="26.0" prefWidth="290.0" promptText="Select from template" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
-                <ComboBox layoutX="17.0" layoutY="95.0" prefHeight="26.0" prefWidth="290.0" promptText="Select default queries" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="95.0" />
+                <Button layoutX="17.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#RunCommand" prefHeight="40.0" prefWidth="290.0" text="Run" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                <ComboBox fx:id="templates" layoutX="17.0" layoutY="60.0" onAction="#SelectTemplate" prefHeight="26.0" prefWidth="290.0" promptText="Select from template" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="60.0" />
+                <ComboBox fx:id="defaultQueries" layoutX="15.0" layoutY="99.0" onAction="#SelectQuery" prefHeight="26.0" prefWidth="290.0" promptText="Select default queries" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="99.0" />
             </children>
         </AnchorPane>
     </children>
