@@ -23,6 +23,8 @@ public class ControllerLogin {
     @FXML
     private TextField username;
 
+    public static MySQL mysql;
+
     @FXML
     void login(MouseEvent event) throws Exception {
         String username = this.username.getText();
@@ -38,7 +40,7 @@ public class ControllerLogin {
         String scriptName = "sample.sql"; // script to run DDL and populate database
         String query = "SELECT * FROM testtable1"; // sample query
 
-        MySQL mysql = new MySQL(username, password);
+        mysql = new MySQL(username, password);
 
         try {
             mysql.runScript(scriptName); // run script to initialize database
@@ -68,9 +70,6 @@ public class ControllerLogin {
         }
         catch (Exception e) {
             throw e;
-        }
-        finally {
-            mysql.close();
         }
     }
 }

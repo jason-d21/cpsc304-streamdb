@@ -41,7 +41,7 @@
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
                 <TextArea fx:id="terminal" layoutX="17.0" layoutY="139.0" prefHeight="196.0" prefWidth="290.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="140.0" />
-                <TextArea fx:id="output" editable="false" layoutX="233.0" layoutY="302.0" prefHeight="123.0" prefWidth="316.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0" />
+                <TextArea fx:id="output" editable="false" layoutX="233.0" layoutY="302.0" prefHeight="123.0" prefWidth="316.0" wrapText="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0" />
                 <Label layoutX="225.0" layoutY="14.0" text="Movie Database" AnchorPane.topAnchor="15.0">
                     <font>
                         <Font size="28.0" />
