@@ -1,11 +1,16 @@
-package com.example.cpsc304streamdb;
+package DatabaseProject;
 
-import java.io.File;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.List;
 import java.util.Scanner;
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
-public class MySQLTextUI {
+public class MySQLTextUI extends Application {
     public static void main(String[] args) throws Exception {
         String scriptName = "sample.sql"; // script to run DDL and populate database
         String query = "SELECT * FROM testtable1"; // sample query
@@ -51,5 +56,14 @@ public class MySQLTextUI {
             mysql.close();
         }
 
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("databaseUI.fxml"));
+        primaryStage.setTitle("Movie Database");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }

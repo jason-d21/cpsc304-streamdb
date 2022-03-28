@@ -1,4 +1,4 @@
-package com.example.cpsc304streamdb;
+package DatabaseProject;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
