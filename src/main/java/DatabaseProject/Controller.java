@@ -1,4 +1,4 @@
-package DatabaseProject;
+package main.java.DatabaseProject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

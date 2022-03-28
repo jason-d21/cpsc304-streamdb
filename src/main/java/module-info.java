@@ -6,5 +6,5 @@ module DatabaseProject {
 
 
     opens DatabaseProject to javafx.fxml;
-    exports DatabaseProject;
+    exports main.java.DatabaseProject;
 }

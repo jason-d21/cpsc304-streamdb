@@ -1,5 +1,10 @@
-package com.example.cpsc304streamdb;
+package main.java.DatabaseProject;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import java.io.File;
 import java.util.List;
 import java.util.Scanner;
@@ -51,5 +56,9 @@ public class MySQLTextUI {
             mysql.close();
         }
 
+        Parent root = FXMLLoader.load(getClass().getResource("databaseUI.fxml"));
+        primaryStage.setTitle("Movie Database");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }
