@@ -71,17 +71,17 @@ public class ControllerDatabase implements Initializable {
         String option = templates.getSelectionModel().getSelectedItem();
         if (option.equals("Insert")) {
             terminal.setText("INSERT INTO table_name\n" +
-                    "VALUES (value1, value2, value3, ...)");
+                    "VALUES (value1, value2, value3, ...);");
         } else if (option.equals("Delete")) {
-            terminal.setText("DELETE FROM table_name\n" + "WHERE condition");
+            terminal.setText("DELETE FROM table_name\n" + "WHERE condition;");
         } else if (option.equals("Update")) {
             terminal.setText("UPDATE table_name\n" +
                     "SET column1 = value1, column2 = value2, ...\n" +
-                    "WHERE condition");
+                    "WHERE condition;");
         } else if (option.equals("Select")) {
             terminal.setText("SELECT column1, column2, ...\n" +
                     "FROM table_name\n" +
-                    "WHERE condition");
+                    "WHERE condition;");
         }
     }
 
