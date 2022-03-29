@@ -20,12 +20,9 @@ public class MySQLTextUI extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent e) {
-                if (ControllerLogin.mysql != null) {
-                    ControllerLogin.mysql.close();
-                }
+        primaryStage.setOnCloseRequest(e -> {
+            if (ControllerLogin.mysql != null) {
+                ControllerLogin.mysql.close();
             }
         });
     }

@@ -53,7 +53,7 @@ public class MySQL {
     }
 
     // Read SQL script and returns a list of statements in the script
-    private List<String> readScript(String scriptName) throws FileNotFoundException {
+    public List<String> readScript(String scriptName) throws FileNotFoundException {
         File f = new File("./" + scriptName);
         Scanner reader = new Scanner(f);
         reader.useDelimiter(";");

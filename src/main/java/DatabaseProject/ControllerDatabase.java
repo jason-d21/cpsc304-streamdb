@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,6 +30,8 @@ public class ControllerDatabase implements Initializable {
     private String[] statements = {"insert", "delete", "update"};
 
     private MySQL mysql;
+
+    private List<String> queries;
 
     @FXML
     void RunCommand(MouseEvent event) {
@@ -89,19 +92,23 @@ public class ControllerDatabase implements Initializable {
     void SelectQuery(ActionEvent event) {
         String option = defaultQueries.getSelectionModel().getSelectedItem();
         if (option.equals("Query1")) {
-            terminal.setText("Query1");
+            terminal.setText(queries.get(0));
         } else if (option.equals("Query2")) {
-            terminal.setText("Query2");
-        } else if (option.equals("Query3")) {
-            terminal.setText("Query3");
+            terminal.setText(queries.get(1));
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         templates.getItems().addAll("Insert", "Delete", "Update", "Select");
-        defaultQueries.getItems().addAll("Query1", "Query2", "Query3");
+        defaultQueries.getItems().addAll("Query1", "Query2");
 
         mysql = ControllerLogin.mysql;
+
+        try {
+            queries = mysql.readScript("queries.sql");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
