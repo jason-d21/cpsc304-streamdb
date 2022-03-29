@@ -1,4 +1,4 @@
-package com.example.cpsc304streamdb;
+package DatabaseProject;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
@@ -27,7 +27,7 @@ public class MySQL {
         }
         catch (SQLException e) {
             close();
-            throw e;
+            //throw e;
         }
     }
 
@@ -40,7 +40,7 @@ public class MySQL {
         }
         catch (SQLException e) {
             close();
-            throw e;
+            //throw e;
         }
     }
 
@@ -53,7 +53,7 @@ public class MySQL {
     }
 
     // Read SQL script and returns a list of statements in the script
-    private List<String> readScript(String scriptName) throws FileNotFoundException {
+    public List<String> readScript(String scriptName) throws FileNotFoundException {
         File f = new File("./" + scriptName);
         Scanner reader = new Scanner(f);
         reader.useDelimiter(";");

@@ -5,6 +5,6 @@ module com.example.cpsc304streamdb {
     requires mysql.connector.java;
 
 
-    opens com.example.cpsc304streamdb to javafx.fxml;
-    exports com.example.cpsc304streamdb;
+    opens DatabaseProject to javafx.fxml;
+    exports DatabaseProject;
 }
