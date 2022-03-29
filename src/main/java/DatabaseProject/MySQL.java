@@ -27,7 +27,7 @@ public class MySQL {
         }
         catch (SQLException e) {
             close();
-            throw e;
+            //throw e;
         }
     }
 
@@ -40,7 +40,7 @@ public class MySQL {
         }
         catch (SQLException e) {
             close();
-            throw e;
+            //throw e;
         }
     }
 

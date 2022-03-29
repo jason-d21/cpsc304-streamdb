@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class ControllerLogin {
 
     @FXML
     private TextField username;
+
+    @FXML
+    private Text alertText;
 
     public static MySQL mysql;
 
@@ -69,7 +73,7 @@ public class ControllerLogin {
             window.setScene(new Scene(root));
         }
         catch (Exception e) {
-            throw e;
+            alertText.setText("Error: Login failed: " + e.getMessage());
         }
     }
 }
