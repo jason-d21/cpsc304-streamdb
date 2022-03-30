@@ -53,13 +53,20 @@ public class ControllerDatabase implements Initializable {
             String outputResult = "";
 
             for (String s: queryResult.left) {
-                outputResult += s + " ";
+                outputResult += String.format("%" + (-50) + "s", s) + " ";
             }
+
+            outputResult += "\n";
+            int l = outputResult.length();
+            for (int i = 0; i < l; i++) {
+                outputResult += "-";
+            }
+
             outputResult += "\n";
             for (List<String> j: queryResult.right) {
                 String tuple = "";
                 for (String s: j) {
-                    tuple += s + " ";
+                    tuple += String.format("%" + (-50) + "s", s) + " ";
                 }
                 outputResult += tuple + "\n";
             }
