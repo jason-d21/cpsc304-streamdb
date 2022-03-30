@@ -44,8 +44,7 @@ public class ControllerLogin {
         // At the start of the session, enter the username and password for the connection to log in
         // default username for MySQL connection is "root"
 
-        String scriptName = "sample.sql"; // script to run DDL and populate database
-        String query = "SELECT * FROM testtable1"; // sample query
+        String scriptName = "setup.sql"; // script to run DDL and populate database
 
         try {
             mysql = new MySQL(username, password);

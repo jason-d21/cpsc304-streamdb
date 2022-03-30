@@ -91,17 +91,26 @@ public class ControllerDatabase implements Initializable {
     @FXML
     void SelectQuery(ActionEvent event) {
         String option = defaultQueries.getSelectionModel().getSelectedItem();
-        if (option.equals("Query1")) {
+        if (option.equals("Selection")) {
             terminal.setText(queries.get(0));
-        } else if (option.equals("Query2")) {
+        } else if (option.equals("Projection")) {
             terminal.setText(queries.get(1));
+        } else if (option.equals("Join")) {
+            terminal.setText(queries.get(2));
+        } else if (option.equals("Aggregation")) {
+            terminal.setText(queries.get(3));
+        } else if (option.equals("Nested aggregation with group by")) {
+            terminal.setText(queries.get(4));
+        } else if (option.equals("Division")) {
+            terminal.setText(queries.get(5));
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         templates.getItems().addAll("Insert", "Delete", "Update", "Select");
-        defaultQueries.getItems().addAll("Query1", "Query2");
+        defaultQueries.getItems().addAll("Selection", "Projection", "Join", "Aggregation",
+                "Nested aggregation with group by", "Division");
 
         mysql = ControllerLogin.mysql;
 
