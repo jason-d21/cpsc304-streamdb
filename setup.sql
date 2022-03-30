@@ -235,8 +235,12 @@ FOREIGN KEY (Email, UserProfileName) REFERENCES UserProfile_Has(Email, Name) ON 
 
 INSERT INTO Watch VALUES (1, "Jacqueline", "jacqueline@gmail.com");
 INSERT INTO Watch VALUES (2, "Denise", "denise@gmail.com");
+INSERT INTO Watch VALUES (4, "Denise", "denise@gmail.com");
+INSERT INTO Watch VALUES (5, "Denise", "denise@gmail.com");
 INSERT INTO Watch VALUES (3, "Blake", "blake@gmail.com");
 INSERT INTO Watch VALUES (4, "Aaron", "aaron@gmail.com");
+INSERT INTO Watch VALUES (2, "Timothy", "timothy@gmail.com");
+INSERT INTO Watch VALUES (4, "Timothy", "timothy@gmail.com");
 INSERT INTO Watch VALUES (5, "Timothy", "timothy@gmail.com");
 
 CREATE TABLE Rating (
