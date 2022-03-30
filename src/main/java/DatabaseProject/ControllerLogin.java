@@ -1,11 +1,11 @@
 package DatabaseProject;
 
-import com.mysql.cj.conf.ConnectionUrlParser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -27,6 +27,9 @@ public class ControllerLogin {
     @FXML
     private Text alertText;
 
+    @FXML
+    private CheckBox checkboxInitialize;
+
     public static MySQL mysql;
 
     @FXML
@@ -44,28 +47,11 @@ public class ControllerLogin {
         String scriptName = "sample.sql"; // script to run DDL and populate database
         String query = "SELECT * FROM testtable1"; // sample query
 
-        mysql = new MySQL(username, password);
-
         try {
-            mysql.runScript(scriptName); // run script to initialize database
+            mysql = new MySQL(username, password);
 
-            // run sample query
-            ConnectionUrlParser.Pair<List<String>, List<List<String>>> results = mysql.runQuery(query);
-            List<String> attributes = results.left;
-            List<List<String>> tuples = results.right;
-
-            // print result of query to console
-            System.out.println("Results for query [" + query + "]:");
-            for (String a : attributes) {
-                System.out.print(a + ", ");
-            }
-            System.out.println();
-
-            for (List<String> tuple : tuples) {
-                for (String val : tuple) {
-                    System.out.print(val + ", ");
-                }
-                System.out.println();
+            if (checkboxInitialize.isSelected()) {
+                mysql.runScript(scriptName); // run script to initialize database
             }
 
             Parent root = FXMLLoader.load(getClass().getResource("databaseUI.fxml"));

@@ -40,7 +40,7 @@ public class ControllerDatabase implements Initializable {
             if (command.toLowerCase().startsWith(s)) {
                 try {
                     mysql.runStatement(command);
-                    output.setText("SUCCESSFUL");
+                    output.setText("COMMAND SUCCESSFUL");
                 } catch (Exception e) {
                     output.setText(e.getMessage());
                 }
