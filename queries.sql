@@ -20,20 +20,31 @@ Join UserProfile_Has with Account_ and select all the user profile names that ar
 */
 SELECT A.Email, Name
 FROM Account_ A, UserProfile_Has UPH
-WHERE A.Status = "Activated";
+WHERE A.Status = "Activated"
+AND A.Email=UPH.Email;
 
 
 /*
-Aggregation - find the total number of genres
+Aggregation - find the total number of distinct entertainment titles
 */
-SELECT COUNT(DISTINCT Name) As GenreCount
-FROM Genre;
+SELECT COUNT(DISTINCT Title) As DistinctTitleCount
+FROM Entertainment_Produce;
 
 
 /*
 Nested Aggregation with Group By
 Find the studio that produced the most entertainments
 */
+
+/* This is a more compact version using WITH that does not seem to work with MySQL
+WITH Temp (StudioName, StudioCity, StudioCountry) AS
+  (SELECT StudioName, StudioCity, StudioCountry, COUNT(*)
+  FROM Entertainment_Produce
+  GROUP BY StudioName, StudioCity, StudioCountry)
+SELECT MAX(*)
+FROM Temp;
+*/
+
 SELECT *
 FROM
     (SELECT StudioName, StudioCity, StudioCountry, COUNT(*) AS EntNum
