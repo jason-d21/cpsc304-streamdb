@@ -75,11 +75,3 @@ WHERE NOT EXISTS (
             WHERE W.Email = UPH.Email AND W.UserProfileName = UPH.Name
         )
     )
-
-
-
-
-
-
-
-
