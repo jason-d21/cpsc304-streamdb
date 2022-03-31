@@ -42,7 +42,7 @@ WITH Temp (StudioName, StudioCity, StudioCountry) AS
   FROM Entertainment_Produce
   GROUP BY StudioName, StudioCity, StudioCountry)
 SELECT MAX(*)
-FROM Temp;
+FROM Temp
 */
 
 SELECT *
