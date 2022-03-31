@@ -11,8 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.List;
-
 public class ControllerLogin {
 
     @FXML
@@ -33,7 +31,7 @@ public class ControllerLogin {
     public static MySQL mysql;
 
     @FXML
-    void login(MouseEvent event) throws Exception {
+    void login(MouseEvent event) {
         String username = this.username.getText();
         String password = this.password.getText();
 

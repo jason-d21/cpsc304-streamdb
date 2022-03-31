@@ -278,4 +278,3 @@ INSERT INTO Rate_HasR VALUES (5, "Timothy", "timothy@gmail.com", 5);
 
 
 
-

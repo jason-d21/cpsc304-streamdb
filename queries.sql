@@ -20,7 +20,8 @@ Join UserProfile_Has with Account_ and select all the user profile names that ar
 */
 SELECT A.Email, Name
 FROM Account_ A, UserProfile_Has UPH
-WHERE A.Status = "Activated";
+WHERE A.Status = "Activated"
+AND A.Email=UPH.Email;
 
 
 /*
@@ -41,7 +42,7 @@ WITH Temp (StudioName, StudioCity, StudioCountry) AS
   FROM Entertainment_Produce
   GROUP BY StudioName, StudioCity, StudioCountry)
 SELECT MAX(*)
-FROM Temp;
+FROM Temp
 */
 
 SELECT *
@@ -74,24 +75,3 @@ WHERE NOT EXISTS (
             WHERE W.Email = UPH.Email AND W.UserProfileName = UPH.Name
         )
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
