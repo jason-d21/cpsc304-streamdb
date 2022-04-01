@@ -38,10 +38,10 @@ Find the studio that produced the most entertainments
 
 /* This is a more compact version using WITH that does not seem to work with MySQL
 WITH Temp (StudioName, StudioCity, StudioCountry) AS
-  (SELECT StudioName, StudioCity, StudioCountry, COUNT(*)
+  (SELECT StudioName, StudioCity, StudioCountry, COUNT(*) AS ECount
   FROM Entertainment_Produce
   GROUP BY StudioName, StudioCity, StudioCountry)
-SELECT MAX(*)
+SELECT MAX(ECount)
 FROM Temp
 */
 
